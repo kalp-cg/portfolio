@@ -113,7 +113,7 @@ const projects = [
     id: "01",
     title: "Taskturf",
     description: "TaskTurf is a platform that connects users with skilled workers for essential home services. Built using the MERN stack, it features a seamless UI, worker profiles, and efficient user-worker interactions. This project highlights my expertise in full-stack development and API integration.",
-    image: "https://plus.unsplash.com/premium_photo-1673971706769-13a9499e3794?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "https://res.cloudinary.com/dhyds3low/image/upload/v1739974856/wdjcntrxhsq9twysgunp.png",
     
     demo: "https://fabulous-syrniki-cc5671.netlify.app/",
   },
@@ -121,7 +121,7 @@ const projects = [
     id: "02",
     title: "Oppo Clone",
     description: "I created a pixel-perfect Oppo website clone using only HTML and CSS, focusing on clean design and responsiveness. The project showcases my skills in structuring web pages, styling with CSS, and ensuring a visually appealing layout.",
-    image: "https://plus.unsplash.com/premium_photo-1673971706769-13a9499e3794?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "https://res.cloudinary.com/dhyds3low/image/upload/v1739974856/rdndxpdhogkhve9atuon.png",
     
     demo: "https://regal-truffle-9575c2.netlify.app/",
   },
@@ -129,7 +129,7 @@ const projects = [
     id: "03",
     title: "Video Player",
     description: "I developed a custom video player using the YouTube API, seamlessly integrating it with React and Tailwind CSS. This project allows users to search and play YouTube videos dynamically, showcasing my expertise in API integration, state management, and responsive UI design.",
-    image: "https://plus.unsplash.com/premium_photo-1673971706769-13a9499e3794?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "https://res.cloudinary.com/dhyds3low/image/upload/v1739974859/e0qp0paodxmvecu52rck.png",
     
     demo: "https://golden-lamington-80e47b.netlify.app/",
   },
@@ -137,7 +137,7 @@ const projects = [
     id: "04",
     title: "SnowEase",
     description: "SnowEase is a platform designed to connect users with workers and equipment for efficient snow removal in heavy snowfall areas. Built with a clean and intuitive UI, it streamlines the process of hiring snow removal services. This project highlights my skills in UI/UX design, front-end development, and platform usability.",
-    image: "https://plus.unsplash.com/premium_photo-1673971706769-13a9499e3794?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "https://res.cloudinary.com/dhyds3low/image/upload/v1739974854/e6uvr5d96v9hngyv45b2.png",
     
     demo: "https://shimmering-scone-089ed6.netlify.app/",
   },
