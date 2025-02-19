@@ -52,7 +52,7 @@ const About = () => {
           alt="About Me"
           className="w-64 h-64 object-cover rounded-lg shadow-lg mx-auto md:mr-10 transition-transform transform hover:scale-105"
         />
-        <div className="text-left mt-6 md:mt-0">
+        <div className="text-left mt-6 md:mt-0 px-[24px]">
           <p className="text-lg leading-relaxed">
             I'm a passionate and creative <span className="text-blue-400 font-semibold">Frontend Developer</span> 
              with a keen interest in building interactive and user-friendly web applications. My expertise includes 

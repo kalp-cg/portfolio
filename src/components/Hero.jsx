@@ -30,7 +30,7 @@ import { FaGithub, FaLinkedin, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const Hero = () => {
   return (
-    <section className="flex flex-col md:flex-row items-center md:items-start justify-center md:justify-start gap-x-10 px-6 md:px-8 py-16 md:py-20 bg-white dark:bg-black text-center md:text-left">
+    <section className="flex flex-col md:flex-row items-center md:items-start justify-center md:justify-start gap-x-10 px-6 md:px-8 py-16 md:py-20 bg-white dark:bg-black text-center md:text-left overflow-hidden">
       {/* Left Side - Text and Social Buttons */}
       <div className="max-w-xl">
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold">
@@ -45,22 +45,22 @@ const Hero = () => {
         </p>
 
         {/* Social Media Buttons */}
-        <div className="flex flex-wrap justify-center md:justify-start space-x-3 sm:space-x-4 mt-6 sm:mt-8">
+        <div className="flex flex-wrap max-sm:gap-2 justify-center md:justify-start space-x-3 sm:space-x-4 mt-6 sm:mt-8">
           <a href="https://github.com/kalp-cg" target="_blank" rel="noopener noreferrer" className="text-white bg-gray-800 hover:bg-gray-700 px-3 py-2 sm:px-4 sm:py-2 rounded-lg text-base sm:text-lg flex items-center space-x-2">
             <FaGithub className="text-lg sm:text-xl" />
-            <span>GitHub</span>
+            <span className="max-sm:hidden">GitHub</span>
           </a>
           <a href="https://www.linkedin.com/in/kalp-patel-/" target="_blank" rel="noopener noreferrer" className="text-white bg-blue-600 hover:bg-blue-500 px-3 py-2 sm:px-4 sm:py-2 rounded-lg text-base sm:text-lg flex items-center space-x-2">
             <FaLinkedin className="text-lg sm:text-xl" />
-            <span>LinkedIn</span>
+            <span className="max-sm:hidden">LinkedIn</span>
           </a>
           <a href="https://www.instagram.com/kalp_._0/?hl=en" target="_blank" rel="noopener noreferrer" className="text-white bg-pink-600 hover:bg-pink-500 px-3 py-2 sm:px-4 sm:py-2 rounded-lg text-base sm:text-lg flex items-center space-x-2">
             <FaInstagram className="text-lg sm:text-xl" />
-            <span>Instagram</span>
+            <span className="max-sm:hidden">Instagram</span>
           </a>
           <a href="https://x.com/patel_kalp92111" target="_blank" rel="noopener noreferrer" className="text-white bg-blue-400 hover:bg-blue-300 px-3 py-2 sm:px-4 sm:py-2 rounded-lg text-base sm:text-lg flex items-center space-x-2">
             <FaTwitter className="text-lg sm:text-xl" />
-            <span>Twitter</span>
+            <span className="max-sm:hidden">Twitter</span>
           </a>
         </div>
       </div>
