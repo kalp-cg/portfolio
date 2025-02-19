@@ -48,7 +48,7 @@ const About = () => {
       </h2>
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center">
         <img
-          src="https://plus.unsplash.com/premium_photo-1738847400430-de5eabe7e6f3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1fHx8ZW58MHx8fHx8"
+          src="https://res.cloudinary.com/dhyds3low/image/upload/v1739980245/wwp4erdalqmdm9uhhahl.jpg"
           alt="About Me"
           className="w-64 h-64 object-cover rounded-lg shadow-lg mx-auto md:mr-10 transition-transform transform hover:scale-105"
         />
