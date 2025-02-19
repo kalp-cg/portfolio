@@ -32,20 +32,35 @@
 
 // export default Navbar;
 
-
-import React from "react";
+import React, { useState } from "react";
+import { Menu, X } from "lucide-react"; // Importing icons for menu toggle
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <nav className="flex justify-between items-center p-4 bg-white dark:bg-black shadow-md">
+    <nav className="flex items-center justify-between p-4 bg-white dark:bg-black shadow-md">
       <div className="text-xl font-bold">Personal</div>
-      <ul className="flex space-x-6">
-        <li><a href="#about" className="hover:underline">About Me</a></li>
-        <li><a href="#skills" className="hover:underline">Skills</a></li>
-        <li><a href="#projects" className="hover:underline">Projects</a></li>
-        <li><a href="#contact" className="hover:underline">Contact Me</a></li>
+
+      {/* Mobile Menu Button */}
+      <button 
+        className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-400"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {isOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
+
+      {/* Navigation Links */}
+      <ul className={`md:flex md:space-x-6 absolute md:static bg-white dark:bg-black md:bg-transparent w-full left-0 md:w-auto top-16 md:top-0 shadow-md md:shadow-none transition-all duration-300 ${isOpen ? "block" : "hidden"} md:flex-row md:items-center`}>
+        <li className="p-4 md:p-0"><a href="#about" className="hover:underline">About Me</a></li>
+        <li className="p-4 md:p-0"><a href="#skills" className="hover:underline">Skills</a></li>
+        <li className="p-4 md:p-0"><a href="#projects" className="hover:underline">Projects</a></li>
+        <li className="p-4 md:p-0"><a href="#contact" className="hover:underline">Contact Me</a></li>
       </ul>
-      <button className="px-4 py-2 bg-black text-white rounded-md">Resume</button>
+
+      <button className="hidden md:block px-4 py-2 bg-black text-white rounded-md">
+        Resume
+      </button>
     </nav>
   );
 };
