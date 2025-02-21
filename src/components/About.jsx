@@ -54,7 +54,7 @@ const About = () => {
         />
         <div className="text-left mt-6 md:mt-0 px-[24px]">
           <p className="text-lg leading-relaxed">
-            I'm a passionate and creative <span className="text-blue-400 font-semibold">Frontend Developer</span> 
+            I'm a passionate and creative <span className="text-blue-400 font-semibold">Frontend Developer and Backend developer</span> 
              with a keen interest in building interactive and user-friendly web applications. My expertise includes 
             modern frontend technologies, UI/UX design, and responsive web development.
           </p>
