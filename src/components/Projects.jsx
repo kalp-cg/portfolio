@@ -112,51 +112,56 @@ const projects = [
   {
     id: "01",
     title: "Taskturf",
-    description: "TaskTurf is a platform that connects users with skilled workers for essential home services. Built using the MERN stack, it features a seamless UI, worker profiles, and efficient user-worker interactions. This project highlights my expertise in full-stack development and API integration.",
-    image: "https://res.cloudinary.com/dhyds3low/image/upload/v1739974856/wdjcntrxhsq9twysgunp.png",
-    
-    demo: "https://fabulous-syrniki-cc5671.netlify.app/",
+    description:
+      "TaskTurf is a platform that connects users with skilled workers for essential home services. Built using the MERN stack, it features a seamless UI, worker profiles, and efficient user-worker interactions. This project highlights my expertise in full-stack development and API integration.",
+    image:
+      "https://res.cloudinary.com/dhyds3low/image/upload/v1740373339/zohc884vrcfjnvh5nv9e.png",
+    demo: "https://task-turf.vercel.app/",
+    video: "https://drive.google.com/file/d/18ronXsGwWFT858ppiCnk5cIyPfAio5DP/preview",
   },
   {
     id: "02",
     title: "Oppo Clone",
-    description: "I created a pixel-perfect Oppo website clone using only HTML and CSS, focusing on clean design and responsiveness. The project showcases my skills in structuring web pages, styling with CSS, and ensuring a visually appealing layout.",
-    image: "https://res.cloudinary.com/dhyds3low/image/upload/v1739974856/rdndxpdhogkhve9atuon.png",
-    
+    description:
+      "I created a pixel-perfect Oppo website clone using only HTML and CSS, focusing on clean design and responsiveness. The project showcases my skills in structuring web pages, styling with CSS, and ensuring a visually appealing layout.",
+    image:
+      "https://res.cloudinary.com/dhyds3low/image/upload/v1739974856/rdndxpdhogkhve9atuon.png",
     demo: "https://regal-truffle-9575c2.netlify.app/",
   },
   {
     id: "03",
     title: "Video Player",
-    description: "I developed a custom video player using the YouTube API, seamlessly integrating it with React and Tailwind CSS. This project allows users to search and play YouTube videos dynamically, showcasing my expertise in API integration, state management, and responsive UI design.",
-    image: "https://res.cloudinary.com/dhyds3low/image/upload/v1739974859/e0qp0paodxmvecu52rck.png",
-    
+    description:
+      "I developed a custom video player using the YouTube API, seamlessly integrating it with React and Tailwind CSS. This project allows users to search and play YouTube videos dynamically, showcasing my expertise in API integration, state management, and responsive UI design.",
+    image:
+      "https://res.cloudinary.com/dhyds3low/image/upload/v1739974859/e0qp0paodxmvecu52rck.png",
     demo: "https://golden-lamington-80e47b.netlify.app/",
   },
   {
     id: "04",
     title: "SnowEase",
-    description: "SnowEase is a platform designed to connect users with workers and equipment for efficient snow removal in heavy snowfall areas. Built with a clean and intuitive UI, it streamlines the process of hiring snow removal services. This project highlights my skills in UI/UX design, front-end development, and platform usability.",
-    image: "https://res.cloudinary.com/dhyds3low/image/upload/v1739974854/e6uvr5d96v9hngyv45b2.png",
-    
+    description:
+      "SnowEase is a platform designed to connect users with workers and equipment for efficient snow removal in heavy snowfall areas. Built with a clean and intuitive UI, it streamlines the process of hiring snow removal services. This project highlights my skills in UI/UX design, front-end development, and platform usability.",
+    image:
+      "https://res.cloudinary.com/dhyds3low/image/upload/v1739974854/e6uvr5d96v9hngyv45b2.png",
     demo: "https://shimmering-scone-089ed6.netlify.app/",
   },
   {
     id: "05",
     title: "Portfolio Website",
     description: "My personal portfolio website with dark/light mode support.",
-    image: "https://plus.unsplash.com/premium_photo-1673971706769-13a9499e3794?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    
+    image:
+      "https://plus.unsplash.com/premium_photo-1673971706769-13a9499e3794?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     demo: "https://yourportfolio.netlify.app/",
   },
 ];
 
 function Projects() {
   return (
-    <section id="projects" className="py-20 bg-black text-white " >
+    <section id="projects" className="py-20 bg-black text-white">
       <div className="container mx-auto px-6">
         {/* Section Title */}
-        <h2 className="text-center text-4xl  mb-12 font-extrabold">
+        <h2 className="text-center text-4xl mb-12 font-extrabold">
           My <span className="text-gray-300">Projects</span>
         </h2>
 
@@ -169,86 +174,58 @@ function Projects() {
                 index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
               }`}
             >
-              {/* Left Side (Image for Odd, Text for Even) */}
+              {/* Left Side (Image/Video for Odd, Text for Even) */}
               <div className="w-full">
-                {index % 2 === 0 ? (
+                {project.title === "Taskturf" ? (
+                  // Google Drive Video Embed for TaskTurf
+                  <iframe
+                    src={project.video}
+                    allow="autoplay"
+                    className="rounded-lg shadow-lg object-cover w-full h-80"
+                    autoPlay
+                    muted
+                  ></iframe>
+                ) : (
+                  // Show Image for Other Projects
                   <img
                     src={project.image}
                     alt={project.title}
                     className="rounded-lg shadow-lg object-cover w-full"
                   />
-                ) : (
-                  <div>
-                    <h3 className="text-4xl font-bold mb-2 text-gray-200">
-                      {project.id}
-                    </h3>
-                    <h4 className="text-2xl  font-bold">{project.title}</h4>
-                    <p className="text-gray-400 mt-2 font-mono">{project.description}</p>
-
-                    {/* Buttons */}
-                    <div className="flex gap-4 mt-4">
-                      {project.github !== "#" && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-blue-400 hover:text-blue-300 flex items-center gap-1 transition"
-                        >
-                      
-                        </a>
-                      )}
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-400 hover:text-blue-300 flex items-center gap-1 transition"
-                      >
-                        <ExternalLink className="w-4 h-4" /> Live Demo
-                      </a>
-                    </div>
-                  </div>
                 )}
               </div>
 
               {/* Right Side (Text for Odd, Image for Even) */}
               <div className="w-full">
-                {index % 2 !== 0 ? (
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="rounded-lg shadow-lg object-cover w-full"
-                  />
-                ) : (
-                  <div>
-                    <h3 className="text-4xl font-bold mb-2 text-gray-200">
-                      {project.id}
-                    </h3>
-                    <h4 className="text-2xl  font-bold">{project.title}</h4>
-                    <p className="text-gray-400 mt-2 font-mono">{project.description}</p>
+                <h3 className="text-4xl font-bold mb-2 text-gray-200">
+                  {project.id}
+                </h3>
+                <h4 className="text-2xl font-bold">{project.title}</h4>
+                <p className="text-gray-400 mt-2 font-mono">
+                  {project.description}
+                </p>
 
-                    {/* Buttons */}
-                    <div className="flex gap-4 mt-4">
-                      {project.github !== "#" && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-blue-400 hover:text-blue-300 flex items-center gap-1 transition"
-                        >
-                          
-                        </a>
-                      )}
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-400 hover:text-blue-300 flex items-center gap-1 transition"
-                      >
-                        <ExternalLink className="w-4 h-4" /> Live Demo
-                      </a>
-                    </div>
-                  </div>
-                )}
+                {/* Buttons */}
+                <div className="flex gap-4 mt-4">
+                  {project.github && project.github !== "#" && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-400 hover:text-blue-300 flex items-center gap-1 transition"
+                    >
+                      <Github className="w-4 h-4" /> GitHub
+                    </a>
+                  )}
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-400 hover:text-blue-300 flex items-center gap-1 transition"
+                  >
+                    <ExternalLink className="w-4 h-4" /> Live Demo
+                  </a>
+                </div>
               </div>
             </div>
           ))}

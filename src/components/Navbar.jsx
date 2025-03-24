@@ -56,6 +56,7 @@ const Navbar = () => {
         <li className="p-4 md:p-0"><a href="#skills" className="hover:underline">Skills</a></li>
         <li className="p-4 md:p-0"><a href="#projects" className="hover:underline">Projects</a></li>
         <li className="p-4 md:p-0"><a href="#contact" className="hover:underline">Contact Me</a></li>
+       
       </ul>
 
       <button className="hidden md:block px-4 py-2 bg-black text-white rounded-md">
