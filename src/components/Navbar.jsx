@@ -1,67 +1,136 @@
-// import React from 'react';
-// import { Moon, Sun } from 'lucide-react';
-// import { useTheme } from '../context/ThemeContext';
-
-// function Navbar() {
-//   const { theme, toggleTheme } = useTheme();
-
-//   return (
-//     <nav className="fixed w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 z-50">
-//       <div className="container mx-auto px-6 py-4">
-//         <div className="flex items-center justify-between">
-//           <span className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
-//             Portfolio
-//           </span>
-//           <div className="flex items-center gap-6">
-//             <a href="#about" className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">About</a>
-//             <a href="#skills" className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Skills</a>
-//             <a href="#education" className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Education</a>
-//             <a href="#projects" className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Projects</a>
-//             <button
-//               onClick={toggleTheme}
-//               className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-//             >
-//               {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-//     </nav>
-//   );
-// }
-
-// export default Navbar;
-
-import React, { useState } from "react";
-import { Menu, X } from "lucide-react"; // Importing icons for menu toggle
+import React, { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Track scroll for navbar shadow
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="flex items-center justify-between p-4 bg-white dark:bg-black shadow-md">
-      <div className="text-xl font-bold">Personal</div>
+    <nav 
+      className={`fixed w-full top-0 z-50 backdrop-blur-md transition-all duration-300 ${
+        isScrolled 
+          ? "bg-black/90 border-b border-[var(--color-gold2)/20] shadow-lg" 
+          : "bg-black/80 border-b border-transparent"
+      }`}
+    >
+      <div className="container mx-auto px-4 py-3">
+        <div className="flex items-center justify-between">
+          {/* Logo with golden gradient */}
+          <a 
+            href="#home" 
+            className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[var(--color-gold1)] to-[var(--color-gold3)] focus:outline-none focus:ring-2 focus:ring-[var(--color-gold2)] rounded"
+            aria-label="Home"
+          >
+            Kalp Patel
+          </a>
 
-      {/* Mobile Menu Button */}
-      <button 
-        className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-400"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        {isOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-6">
+            {['About', 'Skills', 'Projects', 'Contact'].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="px-3 py-2 text-[var(--color-gold2)] hover:text-[var(--color-gold1)] transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-[var(--color-gold2)] rounded"
+                aria-label={`Navigate to ${item}`}
+              >
+                {item}
+              </a>
+            ))}
+            <div className="flex gap-4 ml-4">
+              {[
+                { icon: <FaGithub aria-hidden="true" />, href: "https://github.com/kalp-cg", label: "GitHub" },
+                { icon: <FaLinkedin aria-hidden="true" />, href: "https://linkedin.com/in/kalp-patel-", label: "LinkedIn" },
+                { icon: <FaTwitter aria-hidden="true" />, href: "https://x.com/patel_kalp92111", label: "Twitter" }
+              ].map((social, i) => (
+                <a
+                  key={i}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 text-[var(--color-gold2)] hover:text-[var(--color-gold1)] transition-colors rounded-full focus:outline-none focus:ring-2 focus:ring-[var(--color-gold2)]"
+                  aria-label={`Visit ${social.label}`}
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
+            <a
+              href="/images/Black and White Clean Professional A4 Resume.pdf"
+              download
+              className="px-4 py-2 bg-gradient-to-r from-[var(--color-gold2)] to-[var(--color-gold3)] text-black font-medium rounded-lg hover:shadow-lg hover:shadow-[var(--color-gold2)/30] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--color-gold2)]"
+              aria-label="Download Resume"
+            >
+              Resume
+            </a>
+          </div>
 
-      {/* Navigation Links */}
-      <ul className={`md:flex md:space-x-6 absolute md:static bg-white dark:bg-black md:bg-transparent w-full left-0 md:w-auto top-16 md:top-0 shadow-md md:shadow-none transition-all duration-300 ${isOpen ? "block" : "hidden"} md:flex-row md:items-center`}>
-        <li className="p-4 md:p-0"><a href="#about" className="hover:underline">About Me</a></li>
-        <li className="p-4 md:p-0"><a href="#skills" className="hover:underline">Skills</a></li>
-        <li className="p-4 md:p-0"><a href="#projects" className="hover:underline">Projects</a></li>
-        <li className="p-4 md:p-0"><a href="#contact" className="hover:underline">Contact Me</a></li>
-       
-      </ul>
+          {/* Mobile menu button */}
+          <button 
+            className="md:hidden p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-gold2)]"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+          >
+            {isOpen ? (
+              <X size={24} className="text-[var(--color-gold1)]" />
+            ) : (
+              <Menu size={24} className="text-[var(--color-gold1)]" />
+            )}
+          </button>
+        </div>
 
-      <button className="hidden md:block px-4 py-2 bg-black text-white rounded-md">
-        Resume
-      </button>
+        {/* Mobile Navigation */}
+        <div className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}>
+          <div className="pt-4 pb-6 space-y-3">
+            {['About', 'Skills', 'Projects', 'Contact'].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="block px-4 py-2 text-[var(--color-gold2)] hover:text-[var(--color-gold1)] hover:bg-[var(--color-gold2)/10] rounded transition-colors"
+                onClick={() => setIsOpen(false)}
+                aria-label={`Navigate to ${item}`}
+              >
+                {item}
+              </a>
+            ))}
+            <div className="flex gap-4 px-4 pt-2">
+              {[
+                { icon: <FaGithub aria-hidden="true" />, href: "https://github.com/kalp-cg", label: "GitHub" },
+                { icon: <FaLinkedin aria-hidden="true" />, href: "https://linkedin.com/in/kalp-patel-", label: "LinkedIn" },
+                { icon: <FaTwitter aria-hidden="true" />, href: "https://x.com/patel_kalp92111", label: "Twitter" }
+              ].map((social, i) => (
+                <a
+                  key={i}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 text-[var(--color-gold2)] hover:text-[var(--color-gold1)] transition-colors rounded-full"
+                  aria-label={`Visit ${social.label}`}
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
+            <a
+              href="/images/Black and White Clean Professional A4 Resume.pdf"
+              download
+              className="block mx-4 mt-4 px-4 py-2 bg-gradient-to-r from-[var(--color-gold2)] to-[var(--color-gold3)] text-black text-center font-medium rounded-lg hover:shadow-lg hover:shadow-[var(--color-gold2)/30] transition-all"
+              aria-label="Download Resume"
+            >
+              Resume
+            </a>
+          </div>
+        </div>
+      </div>
     </nav>
   );
 };

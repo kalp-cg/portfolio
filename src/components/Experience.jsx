@@ -29,21 +29,21 @@ const experiences = [
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-20 bg-white dark:bg-black text-center">
+    <section id="experience" className="py-20 bg-gray-900 text-gray-100 text-center">
       <h2 className="text-4xl font-bold mb-8">
-        My <span className="text-blue-500">Experience</span>
+        My <span className="text-amber-400">Experience</span>
       </h2>
       <div className="max-w-4xl mx-auto space-y-6">
         {experiences.map((exp, index) => (
           <div
             key={index}
-            className="p-6 bg-gray-100 dark:bg-gray-900 shadow-md rounded-lg text-left"
+            className="p-6 bg-gray-800 shadow-md rounded-lg text-left border border-gray-700 hover:border-amber-400/30 transition"
           >
-            <h3 className="text-2xl font-semibold flex items-center">
+            <h3 className="text-2xl font-semibold flex items-center text-amber-400">
               <span className="mr-2">{exp.icon}</span> {exp.role} at {exp.company}
             </h3>
-            <p className="text-gray-600 dark:text-gray-300">{exp.duration}</p>
-            <p className="mt-2">{exp.description}</p>
+            <p className="text-gray-300">{exp.duration}</p>
+            <p className="mt-2 text-gray-200">{exp.description}</p>
           </div>
         ))}
       </div>

@@ -21,10 +21,10 @@ const education = [
 
 function Education() {
   return (
-    <section id="education" className="py-20 bg-black text-white">
+    <section id="education" className="py-20 bg-[var(--color-bg)] text-[var(--color-text)]">
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="text-4xl font-bold">
-          My <span className="text-gray-400">Education</span>
+          My <span className="text-[var(--color-gold1)]">Education</span>
         </h2>
       </div>
 
@@ -32,13 +32,13 @@ function Education() {
         {education.map((edu, index) => (
           <div
             key={index}
-            className="bg-gray-900 p-6 rounded-lg border border-gray-800"
+            className="bg-[var(--color-ui)] p-6 rounded-lg border border-gray-700 hover:border-[var(--color-gold2)]/30 transition"
           >
             <div className="flex justify-between items-center">
-              <h3 className="text-xl font-semibold">{edu.level}</h3>
-              <span className="text-gray-400">{edu.year}</span>
+              <h3 className="text-xl font-semibold text-white">{edu.level}</h3>
+              <span className="text-[var(--color-gold1)]">{edu.year}</span>
             </div>
-            <p className="text-gray-400 mt-2">Score: {edu.score}</p>
+            <p className="text-[var(--color-gold2)] mt-2">Score: {edu.score}</p>
           </div>
         ))}
       </div>

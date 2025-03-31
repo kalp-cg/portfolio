@@ -1,64 +1,29 @@
-// import React from "react";
-
-// function About() {
-//   return (
-//     <section id="about" className="py-20 bg-black text-white px-6 md:px-16">
-//       <div className="text-center mb-12">
-//         <h2 className="text-4xl font-bold text-white">
-//           About <span className="text-gray-400">Me</span>
-//         </h2>
-//       </div>
-
-//       <div className="max-w-4xl mx-auto text-center space-y-6">
-//         <p className="text-gray-400 text-lg leading-relaxed">
-//           I'm a passionate developer skilled in building modern web applications. 
-//           I specialize in frontend and backend technologies to create seamless digital experiences. 
-//           Additionally, I have a keen eye for UI/UX, ensuring that the designs I implement are both 
-//           visually appealing and user-friendly.
-//         </p>
-
-//         {/* Skills Grid */}
-//         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-//           {[
-//             { title: "Frontend", skills: "React, Tailwind" },
-//             { title: "Backend", skills: "Node.js, Express" },
-//             { title: "Database", skills: "MongoDB" },
-//             { title: "UI/UX", skills: "Figma, ShadeCN, Chakra UI" }
-//           ].map((skill, index) => (
-//             <div key={index} className="p-4 bg-gray-900 border border-gray-700 rounded-lg text-center">
-//               <h3 className="font-medium text-white text-lg">{skill.title}</h3>
-//               <p className="text-gray-400">{skill.skills}</p>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-// export default About;
-
 import React from "react";
 
 const About = () => {
   return (
-    <section id="about" className="py-20 bg-black text-white text-center font-mono">
+    <section id="about" className="py-20 bg-[var(--color-bg)] text-[var(--color-text)] text-center">
       <h2 className="text-5xl font-extrabold mb-8 tracking-wide">
-        About <span className="text-blue-500">Me</span>
+        About <span className="text-[var(--color-gold1)]">Me</span>
       </h2>
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center">
-        <img
-          src="https://res.cloudinary.com/dhyds3low/image/upload/v1739980245/wwp4erdalqmdm9uhhahl.jpg"
-          alt="About Me"
-          className="w-64 h-64 object-cover rounded-lg shadow-lg mx-auto md:mr-10 transition-transform transform hover:scale-105"
-        />
-        <div className="text-left mt-6 md:mt-0 px-[24px]">
-          <p className="text-lg leading-relaxed">
-            I'm a passionate and creative <span className="text-blue-400 font-semibold">Frontend Developer and Backend developer</span> 
-             with a keen interest in building interactive and user-friendly web applications. My expertise includes 
+        <div className="relative group">
+          <div 
+            className="absolute -inset-2 bg-gradient-to-r from-[var(--color-gold1)] to-[var(--color-gold3)] rounded-lg blur opacity-20 group-hover:opacity-30 transition duration-300"
+          ></div>
+          <img
+            src="https://res.cloudinary.com/dhyds3low/image/upload/v1739980245/wwp4erdalqmdm9uhhahl.jpg"
+            alt="About Me"
+            className="relative w-64 h-64 object-cover rounded-lg shadow-lg mx-auto md:mr-10 transition-transform group-hover:scale-105 border-2 border-[var(--color-gold2)/20]"
+          />
+        </div>
+        <div className="text-left mt-6 md:mt-0 px-6">
+          <p className="text-lg leading-relaxed text-[var(--color-text)]">
+            I'm a passionate and creative <span className="text-[var(--color-gold2)] font-semibold">Frontend Developer and Backend developer</span> 
+            with a keen interest in building interactive and user-friendly web applications. My expertise includes 
             modern frontend technologies, UI/UX design, and responsive web development.
           </p>
-          <p className="mt-4 text-lg leading-relaxed">
+          <p className="mt-4 text-lg leading-relaxed text-[var(--color-text)]">
             I enjoy solving complex problems and bringing innovative ideas to life. My goal is to create 
             seamless digital experiences that leave a lasting impact.
           </p>

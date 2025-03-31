@@ -1,124 +1,213 @@
-import React, { useEffect, useRef } from "react";
-import { FaGithub, FaLinkedin, FaInstagram, FaTwitter } from "react-icons/fa";
+import React, { useEffect, useRef, useState } from "react";
+import { FaGithub, FaLinkedin, FaTwitter, FaRocket } from "react-icons/fa";
 
 const Hero = () => {
   const textRef = useRef(null);
   const imageRef = useRef(null);
-  const socialRef = useRef(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  // Color variables
+  const colors = {
+    black: "#000000",
+    darkGray1: "#1A1A1A",
+    darkGray2: "#333333",
+    gold1: "#F5C16C",
+    gold2: "#E6B35A",
+    gold3: "#D9A049"
+  };
 
   useEffect(() => {
-    // Animate elements on page load
-    const textElement = textRef.current;
-    const imageElement = imageRef.current;
-    const socialElement = socialRef.current;
+    // Apply colors as CSS variables
+    document.documentElement.style.setProperty('--color-bg', colors.black);
+    document.documentElement.style.setProperty('--color-text', colors.darkGray2);
+    document.documentElement.style.setProperty('--color-ui', colors.darkGray1);
+    document.documentElement.style.setProperty('--color-gold1', colors.gold1);
+    document.documentElement.style.setProperty('--color-gold2', colors.gold2);
+    document.documentElement.style.setProperty('--color-gold3', colors.gold3);
 
-    if (textElement && imageElement && socialElement) {
-      textElement.style.opacity = "0";
-      imageElement.style.opacity = "0";
-      socialElement.style.opacity = "0";
-
+    // Entrance animations
+    [textRef.current, imageRef.current].forEach((el, i) => {
       setTimeout(() => {
-        textElement.style.opacity = "1";
-        textElement.style.transform = "translateY(0)";
-      }, 300);
-
-      setTimeout(() => {
-        imageElement.style.opacity = "1";
-        imageElement.style.transform = "translateY(0)";
-      }, 600);
-
-      setTimeout(() => {
-        socialElement.style.opacity = "1";
-        socialElement.style.transform = "translateY(0)";
-      }, 900);
-    }
+        el.style.opacity = 1;
+        el.style.transform = "translateY(0)";
+      }, 300 * (i + 1));
+    });
   }, []);
 
+  // Floating particles
+  const particles = Array(50).fill(0).map((_, i) => ({
+    id: i,
+    size: Math.random() * 2 + 0.5,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    speed: Math.random() * 20 + 10,
+    delay: Math.random() * 5,
+    opacity: Math.random() * 0.8 + 0.2
+  }));
+
   return (
-    <section className="relative flex flex-col md:flex-row items-center md:items-start justify-center md:justify-start gap-x-10 px-6 md:px-8 py-16 md:py-24 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 text-center md:text-left overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute inset-0 opacity-10 dark:opacity-20">
-        <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-blue-300 dark:bg-blue-700 blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-64 h-64 rounded-full bg-red-300 dark:bg-red-700 blur-3xl"></div>
-      </div>
-
-      {/* Left Side - Text and Social Buttons */}
-      <div 
-        ref={textRef}
-        className="max-w-xl z-10 transition-all duration-700 ease-out transform translate-y-8"
-      >
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight">
-          Hello, I'm <span className="text-blue-500 relative inline-block">
-            Kalp Patel
-            <span className="absolute -bottom-2 left-0 w-full h-1 bg-blue-500 transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300"></span>
-          </span>
-        </h1>
-        <h2 className="text-2xl sm:text-3xl md:text-5xl font-semibold mt-2 tracking-tight">
-          Frontend Developer Based in <span className="text-red-500 relative inline-block">India.</span>
-        </h2>
-        <p className="mt-6 text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-          I'm a frontend developer with a passion for building user-friendly interfaces and seamless experiences.
-          I specialize in modern web technologies and love bringing ideas to life through code.
-        </p>
-
-        {/* Social Media Buttons */}
+    <section 
+      className="min-h-screen overflow-hidden flex items-center justify-center bg-[var(--color-bg)] text-[var(--color-text)]"
+      onMouseMove={(e) => {
+        setMousePosition({
+          x: e.clientX / window.innerWidth,
+          y: e.clientY / window.innerHeight
+        });
+      }}
+    >
+      {/* ===== ANIMATED BACKGROUND ===== */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Golden Gradient Glow (Right Side) */}
         <div 
-          ref={socialRef}
-          className="flex flex-wrap justify-center md:justify-start gap-3 sm:gap-4 mt-8 transition-all duration-700 ease-out transform translate-y-8"
+          className="absolute right-0 top-0 h-full w-1/3 bg-gradient-to-l from-[var(--color-gold1)/30] via-[var(--color-gold2)/20] to-transparent"
+          style={{
+            animation: "glowPulse 8s ease infinite alternate",
+            maskImage: "linear-gradient(to left, black, transparent 70%)"
+          }}
+        />
+
+        {/* Floating Particles */}
+        {particles.map((p) => (
+          <div
+            key={p.id}
+            className="absolute rounded-full bg-white"
+            style={{
+              width: `${p.size}px`,
+              height: `${p.size}px`,
+              left: `${p.x}%`,
+              top: `${p.y}%`,
+              opacity: p.opacity,
+              animation: `particleFloat ${p.speed}s ease-in-out infinite both`,
+              animationDelay: `${p.delay}s`,
+              transform: `translate(
+                ${mousePosition.x * 10 - 5}px, 
+                ${mousePosition.y * 10 - 5}px
+              )`
+            }}
+          />
+        ))}
+      </div>
+
+      {/* ===== CONTENT ===== */}
+      <div className="relative z-10 container mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        {/* Left Column - Text */}
+        <div 
+          ref={textRef}
+          className="opacity-0 transform translate-y-10 transition-all duration-700"
         >
-          <a
-            href="https://github.com/kalp-cg"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-base sm:text-lg flex items-center space-x-2 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg"
-          >
-            <FaGithub className="text-lg sm:text-xl" />
-            <span className="max-sm:hidden">GitHub</span>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/kalp-patel-/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg text-base sm:text-lg flex items-center space-x-2 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg"
-          >
-            <FaLinkedin className="text-lg sm:text-xl" />
-            <span className="max-sm:hidden">LinkedIn</span>
-          </a>
-          <a
-            href="https://www.instagram.com/kalp_._0/?hl=en"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white bg-pink-600 hover:bg-pink-500 px-4 py-2 rounded-lg text-base sm:text-lg flex items-center space-x-2 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg"
-          >
-            <FaInstagram className="text-lg sm:text-xl" />
-            <span className="max-sm:hidden">Instagram</span>
-          </a>
-          <a
-            href="https://x.com/patel_kalp92111"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white bg-blue-400 hover:bg-blue-300 px-4 py-2 rounded-lg text-base sm:text-lg flex items-center space-x-2 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg"
-          >
-            <FaTwitter className="text-lg sm:text-xl" />
-            <span className="max-sm:hidden">Twitter</span>
-          </a>
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-3 h-3 rounded-full bg-[var(--color-gold2)] animate-pulse"></div>
+            <span className="font-mono text-[var(--color-gold2)] tracking-widest">WEB DEVELOPER</span>
+          </div>
+
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
+            <span>Kalp </span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-gold1)] to-[var(--color-gold3)]">
+              Patel
+            </span>
+          </h1>
+
+          <p className="text-xl text-[var(--color-text)] mb-8 leading-relaxed">
+            Building elegant web experiences with modern technologies and
+            <span className="text-[var(--color-gold1)]"> precision animations</span>.
+          </p>
+
+          <div className="flex flex-wrap gap-4">
+            <a
+              href="#contact"
+              className="px-8 py-3 bg-gradient-to-r from-[var(--color-gold2)] to-[var(--color-gold3)] text-[var(--color-bg)] rounded-full font-medium flex items-center gap-2 hover:scale-[1.03] transition-transform duration-300"
+            >
+              <FaRocket /> Launch Project
+            </a>
+            <a
+              href="#projects"
+              className="px-8 py-3 border border-[var(--color-gold2)/50] rounded-full font-medium hover:bg-[var(--color-gold2)/10] transition-all duration-300"
+            >
+              View Work
+            </a>
+          </div>
+        </div>
+
+        {/* Right Column - Image */}
+        <div 
+          ref={imageRef}
+          className="opacity-0 transform translate-y-10 transition-all duration-700 flex justify-center"
+        >
+          <div className="relative group w-full max-w-md">
+            {/* Golden Frame */}
+            <div 
+              className="absolute -inset-1 rounded-xl border border-[var(--color-gold2)/30] opacity-70 group-hover:opacity-100 transition-opacity duration-500"
+              style={{
+                background: `linear-gradient(45deg, transparent, var(--color-gold2)/10, transparent)`,
+                animation: "borderGlow 6s ease infinite"
+              }}
+            />
+
+            {/* Profile Image */}
+            <div className="relative z-10 rounded-lg overflow-hidden border border-[var(--color-ui)] bg-[var(--color-ui)]">
+              <img
+                src="/profile-dark.jpg"
+                alt="Kalp Patel"
+                className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              
+              {/* Golden Overlay */}
+              <div 
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{
+                  background: `radial-gradient(circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, var(--color-gold1)/10, transparent 70%)`
+                }}
+              />
+            </div>
+
+            {/* Tech Tags */}
+            <div className="absolute -bottom-4 -left-4 bg-[var(--color-ui)] px-4 py-2 rounded-full border border-[var(--color-gold2)/30] text-sm font-mono animate-float">
+              React.js
+            </div>
+            <div className="absolute -top-4 -right-4 bg-[var(--color-ui)] px-4 py-2 rounded-full border border-[var(--color-gold1)/30] text-sm font-mono animate-float-delay">
+              Next.js
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Right Side - Image */}
-      <div 
-        ref={imageRef}
-        className="mt-12 md:mt-0 md:ml-auto z-10 transition-all duration-700 ease-out transform translate-y-8"
-      >
-        <div className="relative rounded-lg overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl group">
-          <img
-            src="/api/placeholder/500/500"
-            alt="Hero"
-            className="w-60 sm:w-72 md:w-96 transition-all duration-700 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        </div>
-      </div>
+      {/* ===== GLOBAL STYLES ===== */}
+      <style jsx global>{`
+        :root {
+          --color-bg: #000000;
+          --color-text: #333333;
+          --color-ui: #1A1A1A;
+          --color-gold1: #F5C16C;
+          --color-gold2: #E6B35A;
+          --color-gold3: #D9A049;
+        }
+
+        @keyframes glowPulse {
+          0% { opacity: 0.3; }
+          50% { opacity: 0.5; }
+          100% { opacity: 0.3; }
+        }
+
+        @keyframes particleFloat {
+          0%, 100% { transform: translate(0, 0); }
+          50% { transform: translate(5px, -8px); }
+        }
+
+        @keyframes borderGlow {
+          0%, 100% { box-shadow: 0 0 10px 0 var(--color-gold2)/10; }
+          50% { box-shadow: 0 0 20px 5px var(--color-gold2)/20; }
+        }
+
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-8px); }
+        }
+
+        @keyframes float-delay {
+          0%, 100% { transform: translateY(-4px); }
+          50% { transform: translateY(4px); }
+        }
+      `}</style>
     </section>
   );
 };
